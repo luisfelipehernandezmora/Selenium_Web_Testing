@@ -29,7 +29,7 @@ user_name = driver.find_element_by_id("user-name")
 user_name.clear() #delete anything previously typed
 user_name.send_keys(selected_user)
 
-time.sleep(0.5)
+time.sleep(0.2)
 
 ## Insert password
 # secret_password=input(f"What is the password? ")
@@ -37,7 +37,7 @@ secret_password='secret_sauce'
 password = driver.find_element_by_id("password")
 password.clear() #delete anything previously typed
 password.send_keys(secret_password)
-time.sleep(0.5)
+time.sleep(0.2)
 
 ## Click the login button
 login=driver.find_element_by_id("login-button")
@@ -52,21 +52,26 @@ for button in all_buttons:
     if button.text=='ADD TO CART':
         cart_buttons.append(button)
 
-##Case 1- Buy one object
-purchased_item=random.sample(cart_buttons,1)
-boton=driver.find_element_by_id("add-to-cart-sauce-labs-backpack")
-boton.click()
+## Case 1- Buy one object
+def buy_products(n):
+    purchased_items=random.sample(cart_buttons,n)
+    for each in purchased_items:
+        each.click()
+        time.sleep(1)
+    return()
+
+how_many=int(input(f"how many products you want to buy? "))
+buy_products(how_many) #This is a random way to select products, but it can 
+#be made that for a specific set of products proceeds with that selection
+
+
+link=driver.find_element_by_class_name("shopping_cart_link")
+link.click()
 time.sleep(2)
 
-links=driver.find_element_by_class_name("shopping_cart_link")
-links.click()
-time.sleep(2)
-# one_button=random.choice(all_buttons)
-# one_button.click()
-# one_button
-# time.sleep(2.5)
+## To pay
 
-
-
+##TODO in the page https://www.saucedemo.com/cart.html, make sure that the right price applied
+## for each object 
 
 # driver.close()
