@@ -69,9 +69,35 @@ link=driver.find_element_by_class_name("shopping_cart_link")
 link.click()
 time.sleep(2)
 
-## To pay
+## To proceed with paynment
+proceed=driver.find_element_by_id("checkout")
+proceed.click()
+time.sleep(0.2)
 
-##TODO in the page https://www.saucedemo.com/cart.html, make sure that the right price applied
-## for each object 
+first_name=driver.find_element_by_id("first-name")
+first_name.clear()
+first_name.send_keys("luis")
+time.sleep(0.3)
 
+last_name=driver.find_element_by_id("last-name")
+last_name.clear()
+last_name.send_keys("Hernandez")
+time.sleep(0.3)
+
+zip_code=driver.find_element_by_id("postal-code")
+zip_code.clear()
+zip_code.send_keys("10701")
+time.sleep(0.3)
+
+continue_button=driver.find_element_by_id("continue")
+continue_button.click()
+time.sleep(0.2)
+
+##TODO in the page https://www.saucedemo.com/checkout-step-two.html make sure 
+# that the right price applied for each object and that the total sum is same 
+# as item total and somehow guess the tax and see that all is ok!
+
+finish=driver.find_element_by_id("finish")
+finish.click()
+time.sleep(0.2)
 # driver.close()
