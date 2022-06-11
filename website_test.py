@@ -12,8 +12,11 @@ url="https://www.saucedemo.com/"
 options= webdriver.ChromeOptions()
 options.add_argument('--ignore-certificate-errors')
 options.add_argument('--test-type')
+options.add_argument("window-size=1920,1080")
+
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 driver.get(url)
+driver.maximize_window()
 time.sleep(2.5)
 
 # assert "Swag Labs" in driver.title
@@ -23,6 +26,7 @@ time.sleep(2.5)
 #     locked_out_user (is banned from the website). 
 #     problem_user (will suffer a lot of problems), 
 #     performance_glitch_user (will be a little stuck while browsing) \n\n""")
+
 selected_user="standard_user"
 ## Insert User name
 user_name = driver.find_element_by_id("user-name")
