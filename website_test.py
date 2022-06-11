@@ -105,3 +105,4 @@ finish=driver.find_element_by_id("finish")
 finish.click()
 time.sleep(0.2)
 driver.close()
+a=1
