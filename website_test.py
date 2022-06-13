@@ -104,9 +104,4 @@ time.sleep(0.2)
 finish=driver.find_element_by_id("finish")
 finish.click()
 time.sleep(0.2)
-<<<<<<< HEAD
 driver.close()
-=======
-driver.close()
-a=1
->>>>>>> f99294e4369f33ef198607eec0808bc8447169ef
