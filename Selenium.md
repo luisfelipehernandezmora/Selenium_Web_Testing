@@ -1,34 +1,18 @@
 # Webscraping and automate testing with Selenium 
 
-[Selenium](https://selenium-python.readthedocs.io/) is a module that can help us to perform test automation and also to scrape information from webpages. 
+## What is it?
 
-## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install Selenium.
+Is an **open source** module, provides many testing tools and webscraping elements as well. Requires **higher coding skills** when compared with other web testing comercial softwares (all of them paid). Supports **multiple programming languages** like Java, Python, CSharp, Ruby, JavaScript and Kotlin. 
 
-```bash
-pip install foobar
-```
+## What we will do?
+1. We are going to explore the different options and capabilities of [Selenium](https://www.selenium.dev/documentation/). 
+2. Live-code an example in a test website. 
+3. See how to test a webpage with different cases, users, check and detect unexpected behaviors or bugs. 
+4. (If time enough) Will get some important elements of a webpage like title, headers, source code, imbedded links.
 
-## Usage
+## What are people going to get after the talk?
+1. An overview of the capabilities of this module. 
+2. A better idea of how to conduct automate testing for a website when is being develop.
+3. Will show one more tool to do webscraping and show pros and cons among other webscraper when wanting to get some specific information of the HTML.
 
-```python
-import foobar
-
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
-```
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
