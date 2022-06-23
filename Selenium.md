@@ -3,7 +3,7 @@
 ## What is it?
 
 
-Is an **open source** module, provides many testing tools and webscraping elements as well. Requires **higher coding skills** when compared with other web testing comercial softwares (all of them paid). Supports **multiple programming languages** like Java, Python, CSharp, Ruby, JavaScript and Kotlin. 
+Is an **open source** module, that provides many testing tools and webscraping elements. Requires **higher coding skills** when compared with other web testing comercial softwares (all of them paid). Supports **multiple programming languages** like Java, Python, CSharp, Ruby, JavaScript and Kotlin. 
 
 ## What we will do?
 1. We are going to explore the different options and capabilities of [Selenium](https://www.selenium.dev/documentation/). 
