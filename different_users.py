@@ -3,7 +3,6 @@ In this file we will test different users that on before hand we know they give 
 so we want to be able to trace those problems
 """
 import random
-from telnetlib import NEW_ENVIRON
 from requests import options
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -73,14 +72,6 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 driver.get(url)
 driver.maximize_window()
 time.sleep(waiting_time)
-
-# assert "Swag Labs" in driver.title
-
-# selected_user=input(f"""\nWhich user you will like to use? You can choose between\n
-#     standard_user (it wont give any problem :) ),
-#     locked_out_user (is banned from the website). 
-#     problem_user (will suffer a lot of problems), 
-#     performance_glitch_user (will be a little stuck while browsing) \n\n""")
 
 ## Insert User name
 user_name = driver.find_element_by_id("user-name")
