@@ -18,16 +18,18 @@ def timeit():
 
 waiting_time=1
 users=["standard_user","locked_out_user","problem_user","performance_glitch_user","one_new_user"]
+ask=None
 
-ask=input(f"""Which user we are will test?
+while ask not in range(1,6):
+    
+    ask=int(input(f"""Which user we are will test?
 1. standard_user            (it wont give any problem :) )
 2. locked_out_user          (is banned from the website)
 3. problem_user             (will suffer a lot of problems)
 4. performance_glitch_user  (will be a little stuck while browsing)
 5. one_new_user             (don't even exist)
-""")
+"""))
 
-while ask in range(1,6):
     if ask==1:
         selected_user="standard_user"
     elif ask==2:
@@ -38,8 +40,9 @@ while ask in range(1,6):
         selected_user="performance_glitch_user"
     elif ask==5:
         selected_user="one_new_user"
-    print(f"The selected user is {selected_user}")
 
+print(f"The selected user is {selected_user}")
+secret_password='secret_sauce'  
 
 ## Logger section
 logger = logging.getLogger('timeit')
@@ -47,12 +50,15 @@ day=time.strftime("%D").replace("/","_")
 log_name=f"log{day}-{selected_user}.log"
 current_dir=os.getcwd()
 path=str(current_dir)+str("/logs")
-hdlr = logging.FileHandler(fr'C:\Users\adarsh\Desktop\Luis_Felipe\Tech_talk\logs\{log_name}')
+# hdlr = logging.FileHandler(fr'C:\Users\adarsh\Desktop\Luis_Felipe\Tech_talk\logs\{log_name}')
+hdlr = logging.FileHandler(fr'\{current_dir}\logs\{log_name}')
 formatter = logging.Formatter('%(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr)
 logger.setLevel(logging.INFO)
 
+logger.info(timeit())
+logger.info(f"The selected user is {selected_user} with password as {secret_password}\n")
 
 ## OPTIONS FOR THE SELENIUM BROWSER
 options= webdriver.ChromeOptions()
@@ -81,7 +87,6 @@ time.sleep(waiting_time)
 
 ## Insert password
 # secret_password=input(f"What is the password? ")
-secret_password='secret_sauce'  
 password = driver.find_element_by_id("password")
 password.clear() #delete anything previously typed
 password.send_keys(secret_password)
