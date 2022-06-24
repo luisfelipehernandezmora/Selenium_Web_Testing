@@ -12,6 +12,8 @@ import time
 import logging
 from time import gmtime, strftime
 import os
+from selenium.common.exceptions import ScreenshotException
+ 
 
 def timeit():
     return (strftime("%H:%M:%S", gmtime()))
@@ -93,12 +95,44 @@ password.clear() #delete anything previously typed
 password.send_keys(secret_password)
 time.sleep(waiting_time)
 
-## Click the login button
+## Click the login button #Here user 2 and 5 will fail and not continue
+
 login=driver.find_element_by_id("login-button")
 login.click()
-
 current_URL=driver.current_url
+if current_URL=="https://www.saucedemo.com/inventory.html":
+    print(f"Succesful login with user {selected_user} and password {secret_password}")
+    logger.info(timeit())
+    logger.info(f"Succesful login with user {selected_user} and password {secret_password}")
+else:
+    message=driver.find_element_by_tag_name("h3").accessible_name
 
+    if message=="Epic sadface: Sorry, this user has been locked out.":
+        print(f"A problem while login happened with user: {selected_user} and password: {secret_password}\n{message}")
+        logger.info(timeit())
+        logger.info(f"A problem while login happened with user: {selected_user} and password: {secret_password}\n{message}")
+    elif message=="Epic sadface: Username and password do not match any user in this service":
+        print(f"A problem while login happened with user: {selected_user} and password: {secret_password}\n{message}")
+        logger.info(timeit())
+        logger.info(f"A problem while login happened with user: {selected_user} and password: {secret_password}\n{message}")
+    driver.close()
+    quit()
+
+## Take a screenshot here
+try:
+    ## File name for the screenshot
+    screenshot_id = day +"_"+str(time.strftime("%H %M %S"))+"_"+selected_user+".png"
+    ## ATENTION the folder "screenshots" have to be created before, otherwise the driver 
+    # will not save the screenshot
+    driver.save_screenshot(fr'C:\Users\adarsh\Desktop\Luis_Felipe\Tech_talk\screenshots\{screenshot_id}')
+    # driver.save_screenshot(f'{screenshot_id}')
+
+    logger.info(timeit())
+    logger.info(f"Screenshot saved succesfully with the name {screenshot_id}")
+except ScreenshotException as e:
+    print(f"A {e} occurred")
+    logger.error(f"A {e} occurred")
+    screenshot_id = "NaN"
 
 ## Click in something
 # all_buttons=driver.find_elements_by_class_name("inventory_item_price")
@@ -133,21 +167,21 @@ time.sleep(waiting_time)
 first_name=driver.find_element_by_id("first-name")
 first_name.clear()
 first_name.send_keys("luis")
-time.sleep(waiting_time)
+time.sleep(waiting_time-0.5)
 
 last_name=driver.find_element_by_id("last-name")
 last_name.clear()
 last_name.send_keys("Hernandez")
-time.sleep(waiting_time)
+time.sleep(waiting_time-0.5)
 
 zip_code=driver.find_element_by_id("postal-code")
 zip_code.clear()
 zip_code.send_keys("10701")
-time.sleep(waiting_time)
+time.sleep(waiting_time-0.5)
 
 continue_button=driver.find_element_by_id("continue")
 continue_button.click()
-time.sleep(waiting_time)
+time.sleep(waiting_time-0.2)
 
 ##TODO in the page https://www.saucedemo.com/checkout-step-two.html make sure 
 # that the right price applied for each object and that the total sum is same 
