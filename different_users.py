@@ -50,14 +50,15 @@ day=time.strftime("%D").replace("/","_")
 log_name=f"log{day}-{selected_user}.log"
 current_dir=os.getcwd()
 path=str(current_dir)+str("/logs")
-# hdlr = logging.FileHandler(fr'C:\Users\adarsh\Desktop\Luis_Felipe\Tech_talk\logs\{log_name}')
-hdlr = logging.FileHandler(fr'\{current_dir}\logs\{log_name}')
+hdlr = logging.FileHandler(fr'C:\Users\adarsh\Desktop\Luis_Felipe\Tech_talk\logs\{log_name}')
+# hdlr = logging.FileHandler(fr'\{current_dir}\logs\{log_name}')
 formatter = logging.Formatter('%(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr)
 logger.setLevel(logging.INFO)
 
 logger.info(timeit())
+logger.info(f"New testing session begin\n")
 logger.info(f"The selected user is {selected_user} with password as {secret_password}\n")
 
 ## OPTIONS FOR THE SELENIUM BROWSER
@@ -95,6 +96,9 @@ time.sleep(waiting_time)
 ## Click the login button
 login=driver.find_element_by_id("login-button")
 login.click()
+
+current_URL=driver.current_url
+
 
 ## Click in something
 # all_buttons=driver.find_elements_by_class_name("inventory_item_price")
