@@ -10,8 +10,8 @@ waiting_time=1
 
 url="https://www.saucedemo.com/"
 options= webdriver.ChromeOptions()
-options.add_argument('--ignore-certificate-errors')
-options.add_argument('--test-type')
+# options.add_argument('--ignore-certificate-errors')
+# options.add_argument('--test-type')
 options.add_argument("window-size=1920,1080")
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
@@ -47,7 +47,6 @@ time.sleep(waiting_time)
 login=driver.find_element_by_id("login-button")
 login.click()
 
-
 ## Click in something
 # all_buttons=driver.find_elements_by_class_name("inventory_item_price")
 all_buttons=driver.find_elements_by_tag_name("button")
@@ -64,7 +63,7 @@ def buy_products(n):
         time.sleep(waiting_time)
     return()
 
-how_many=int(input(f"how many products you want to buy? "))
+how_many=int(input(f"\nHow many products you want to buy?\n"))
 buy_products(how_many) #This is a random way to select products, but it can 
 #be made that for a specific set of products proceeds with that selection
 
@@ -102,6 +101,6 @@ time.sleep(waiting_time)
 # as item total and somehow guess the tax and see that all is ok!
 
 finish=driver.find_element_by_id("finish")
-finish.click()
 time.sleep(waiting_time)
+finish.click()
 driver.close()
