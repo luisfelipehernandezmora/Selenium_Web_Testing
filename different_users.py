@@ -3,6 +3,7 @@ In this file we will test different users that on before hand we know they give 
 so we want to be able to trace those problems
 """
 import random
+from telnetlib import NEW_ENVIRON
 from requests import options
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -158,6 +159,16 @@ buy_products(how_many) #This is a random way to select products, but it can
 link=driver.find_element_by_class_name("shopping_cart_link")
 link.click()
 time.sleep(waiting_time)
+
+##Count the items
+items_marked=driver.find_element_by_class_name("shopping_cart_badge").text
+items_marked=int(items_marked)
+if items_marked!=how_many:
+    print(f"Oh wait! the page is not recording all the desired items")
+    logger.info(timeit())
+    logger.info(f"Oh wait! with user: {selected_user} the page is not recording all the desired items")
+    driver.close()
+    quit()
 
 ## To proceed with paynment
 proceed=driver.find_element_by_id("checkout")
