@@ -8,7 +8,6 @@ Is an **open source** project, that provides many automation capabilities and we
 1. We are going to explore the different options and capabilities of [Selenium](https://www.selenium.dev/documentation/). 
 2. Live-code an example in a test website. 
 3. See how to test a webpage with different cases, users, check and detect unexpected behaviors or bugs. 
-4. (If time enough) Will get some important elements of a webpage like title, headers, source code, imbedded links.
 
 ## What are people going to get after the talk?
 1. An overview of the capabilities of this module. 

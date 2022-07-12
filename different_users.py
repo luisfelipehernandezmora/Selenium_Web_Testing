@@ -47,12 +47,20 @@ print(f"The selected user is {selected_user}")
 secret_password='secret_sauce'  
 
 ## Logger section
-logger = logging.getLogger('timeit')
+##TODO
+# Understand what is timeit 
+logger = logging.getLogger('timeit') 
+
 day=time.strftime("%D").replace("/","_")
 log_name=f"log{day}-{selected_user}.log"
 current_dir=os.getcwd()
 path=str(current_dir)+str("/logs")
+
+##TODO
+# Convert to pathlib.path and pass object that to the hdlr
 hdlr = logging.FileHandler(fr'C:\Users\adarsh\Desktop\Luis_Felipe\Tech_talk\logs\{log_name}')
+
+
 # hdlr = logging.FileHandler(fr'\{current_dir}\logs\{log_name}')
 formatter = logging.Formatter('%(message)s')
 hdlr.setFormatter(formatter)
@@ -77,7 +85,6 @@ time.sleep(waiting_time)
 user_name = driver.find_element_by_id("user-name")
 user_name.clear() #delete anything previously typed
 user_name.send_keys(selected_user)
-
 time.sleep(waiting_time)
 
 ## Insert password
@@ -92,6 +99,7 @@ time.sleep(waiting_time)
 login=driver.find_element_by_id("login-button")
 login.click()
 current_URL=driver.current_url
+
 if current_URL=="https://www.saucedemo.com/inventory.html":
     print(f"Succesful login with user {selected_user} and password {secret_password}")
     logger.info(timeit())
@@ -135,7 +143,7 @@ for button in all_buttons:
         cart_buttons.append(button)
 
 ## Case 1- Buy one object
-def buy_products(n):
+def buy_products(n,cart_buttons):
     purchased_items=random.sample(cart_buttons,n)
     for each in purchased_items:
         each.click()
@@ -143,7 +151,7 @@ def buy_products(n):
     return()
 
 how_many=int(input(f"\nHow many products you want to buy?\n"))
-buy_products(how_many) #This is a random way to select products, but it can 
+buy_products(how_many,cart_buttons) #This is a random way to select products, but it can 
 #be made that for a specific set of products proceeds with that selection
 
 

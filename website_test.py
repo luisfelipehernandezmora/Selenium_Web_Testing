@@ -7,17 +7,19 @@ from selenium.webdriver.common.keys import Keys
 import time
 
 waiting_time=1
+demo_time=300
 
 url="https://www.saucedemo.com/"
 options= webdriver.ChromeOptions()
+options.add_argument("window-size=1920,1080")
 # options.add_argument('--ignore-certificate-errors')
 # options.add_argument('--test-type')
-options.add_argument("window-size=1920,1080")
+
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 driver.get(url)
 driver.maximize_window()
-time.sleep(waiting_time)
+time.sleep(demo_time)
 
 selected_user="standard_user"   
 ## Insert User name
@@ -51,7 +53,7 @@ for button in all_buttons:
         cart_buttons.append(button)
 
 ## Case 1- Buy one object
-def buy_products(n):
+def buy_products(n,cart_buttons):
     purchased_items=random.sample(cart_buttons,n)
     for each in purchased_items:
         each.click()
@@ -59,9 +61,7 @@ def buy_products(n):
     return()
 
 how_many=int(input(f"\nHow many products you want to buy?\n"))
-buy_products(how_many) #This is a random way to select products, but it can 
-#be made that for a specific set of products proceeds with that selection
-
+buy_products(how_many,cart_buttons) #This is a random way to select products
 
 link=driver.find_element_by_class_name("shopping_cart_link")
 link.click()
