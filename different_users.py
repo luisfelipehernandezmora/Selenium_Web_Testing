@@ -13,11 +13,12 @@ from time import gmtime, strftime
 from pathlib import Path
 from selenium.common.exceptions import ScreenshotException
  
-
 def timeit():
     return (strftime("%H:%M:%S", gmtime()))
 
 waiting_time=1
+demo_time=300
+
 users=["standard_user","locked_out_user","problem_user","performance_glitch_user","one_new_user"]
 ask=None
 
@@ -46,16 +47,22 @@ print(f"The selected user is {selected_user}")
 secret_password='secret_sauce'  
 
 ## Logger section
-
+# Define Logger object with name 'timeit'
 logger = logging.getLogger('timeit') 
 
+# Generate the name of each log file
 day=time.strftime("%D").replace("/","_")
 log_name=f"log{day}-{selected_user}.log"
 
+# Write down the log file in the given location
 hdlr = logging.FileHandler(fr'{Path.cwd()}\logs\{log_name}')
+# Transform a LogRecord into a readable string
 formatter = logging.Formatter('%(message)s')
+# Set the formatter for this handler
 hdlr.setFormatter(formatter)
+# Add the handler to the logger
 logger.addHandler(hdlr)
+# Stablish the priority level for messages to be ignored
 logger.setLevel(logging.INFO)
 
 logger.info(timeit())
@@ -70,7 +77,7 @@ url="https://www.saucedemo.com/"
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 driver.get(url)
 driver.maximize_window()
-time.sleep(waiting_time)
+time.sleep(demo_time)
 
 ## Insert User name
 user_name = driver.find_element_by_id("user-name")
@@ -142,9 +149,7 @@ def buy_products(n,cart_buttons):
     return()
 
 how_many=int(input(f"\nHow many products you want to buy?\n"))
-buy_products(how_many,cart_buttons) #This is a random way to select products, but it can 
-#be made that for a specific set of products proceeds with that selection
-
+buy_products(how_many,cart_buttons) #This is a random way to select products 
 
 link=driver.find_element_by_class_name("shopping_cart_link")
 link.click()
@@ -183,10 +188,6 @@ time.sleep(waiting_time-0.5)
 continue_button=driver.find_element_by_id("continue")
 continue_button.click()
 time.sleep(waiting_time-0.2)
-
-##TODO in the page https://www.saucedemo.com/checkout-step-two.html make sure 
-# that the right price applied for each object and that the total sum is same 
-# as item total and somehow guess the tax and see that all is ok!
 
 finish=driver.find_element_by_id("finish")
 time.sleep(waiting_time)
