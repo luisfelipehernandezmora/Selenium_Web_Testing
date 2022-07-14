@@ -1,5 +1,4 @@
 import random
-from requests import options
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -90,10 +89,6 @@ time.sleep(waiting_time)
 continue_button=driver.find_element_by_id("continue")
 continue_button.click()
 time.sleep(waiting_time)
-
-##TODO in the page https://www.saucedemo.com/checkout-step-two.html make sure 
-# that the right price applied for each object and that the total sum is same 
-# as item total and somehow guess the tax and see that all is ok!
 
 finish=driver.find_element_by_id("finish")
 finish.click()

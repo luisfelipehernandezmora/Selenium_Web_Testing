@@ -3,7 +3,6 @@ In this file we will test different users that on before hand we know they give 
 so we want to be able to trace those problems
 """
 import random
-from requests import options
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -11,7 +10,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 import logging
 from time import gmtime, strftime
-import os
+from pathlib import Path
 from selenium.common.exceptions import ScreenshotException
  
 
@@ -47,21 +46,13 @@ print(f"The selected user is {selected_user}")
 secret_password='secret_sauce'  
 
 ## Logger section
-##TODO
-# Understand what is timeit 
+
 logger = logging.getLogger('timeit') 
 
 day=time.strftime("%D").replace("/","_")
 log_name=f"log{day}-{selected_user}.log"
-current_dir=os.getcwd()
-path=str(current_dir)+str("/logs")
 
-##TODO
-# Convert to pathlib.path and pass object that to the hdlr
-hdlr = logging.FileHandler(fr'C:\Users\adarsh\Desktop\Luis_Felipe\Tech_talk\logs\{log_name}')
-
-
-# hdlr = logging.FileHandler(fr'\{current_dir}\logs\{log_name}')
+hdlr = logging.FileHandler(fr'{Path.cwd()}\logs\{log_name}')
 formatter = logging.Formatter('%(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr)
