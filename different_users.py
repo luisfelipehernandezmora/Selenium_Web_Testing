@@ -6,7 +6,6 @@ import random
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.keys import Keys
 import time
 import logging
 from time import gmtime, strftime
@@ -55,7 +54,9 @@ day=time.strftime("%D").replace("/","_")
 log_name=f"log{day}-{selected_user}.log"
 
 # Write down the log file in the given location
+# hdlr = logging.FileHandler(fr'{Path.cwd()}\Desktop\Luis_Felipe\Tech_talk\logs\{log_name}')
 hdlr = logging.FileHandler(fr'{Path.cwd()}\logs\{log_name}')
+
 # Transform a LogRecord into a readable string
 formatter = logging.Formatter('%(message)s')
 # Set the formatter for this handler
@@ -77,7 +78,8 @@ url="https://www.saucedemo.com/"
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 driver.get(url)
 driver.maximize_window()
-time.sleep(demo_time)
+
+time.sleep(waiting_time)
 
 ## Insert User name
 user_name = driver.find_element_by_id("user-name")
@@ -122,8 +124,7 @@ try:
     screenshot_id = day +"_"+str(time.strftime("%H %M %S"))+"_"+selected_user+".png"
     ## ATENTION the folder "screenshots" have to be created before, otherwise the driver 
     # will not save the screenshot
-    driver.save_screenshot(fr'C:\Users\adarsh\Desktop\Luis_Felipe\Tech_talk\screenshots\{screenshot_id}')
-    # driver.save_screenshot(f'{screenshot_id}')
+    driver.save_screenshot(fr'{Path.cwd()}\screenshots\{screenshot_id}')
 
     logger.info(timeit())
     logger.info(f"Screenshot saved succesfully with the name {screenshot_id}")

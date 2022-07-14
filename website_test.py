@@ -2,7 +2,6 @@ import random
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.keys import Keys
 import time
 
 waiting_time=1
@@ -11,25 +10,22 @@ demo_time=300
 url="https://www.saucedemo.com/"
 options= webdriver.ChromeOptions()
 options.add_argument("window-size=1920,1080")
-# options.add_argument('--ignore-certificate-errors')
-# options.add_argument('--test-type')
-
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 driver.get(url)
 driver.maximize_window()
+time.sleep(waiting_time)
+
 time.sleep(demo_time)
 
-selected_user="standard_user"   
 ## Insert User name
+selected_user="standard_user"   
 user_name = driver.find_element_by_id("user-name")
 user_name.clear() #delete anything previously typed
 user_name.send_keys(selected_user)
-
 time.sleep(waiting_time)
 
 ## Insert password
-# secret_password=input(f"What is the password? ")
 secret_password='secret_sauce'  
 password = driver.find_element_by_id("password")
 password.clear() #delete anything previously typed
@@ -52,7 +48,7 @@ for button in all_buttons:
         cart_buttons.append(button)
 
 ## Case 1- Buy one object
-def buy_products(n,cart_buttons):
+def buy_products(cart_buttons,n):
     purchased_items=random.sample(cart_buttons,n)
     for each in purchased_items:
         each.click()
@@ -60,7 +56,7 @@ def buy_products(n,cart_buttons):
     return()
 
 how_many=int(input(f"\nHow many products you want to buy?\n"))
-buy_products(how_many,cart_buttons) #This is a random way to select products
+buy_products(cart_buttons,how_many) #This is a random way to select products
 
 link=driver.find_element_by_class_name("shopping_cart_link")
 link.click()
