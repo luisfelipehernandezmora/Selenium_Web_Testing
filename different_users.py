@@ -140,8 +140,6 @@ cart_buttons=[]
 for button in all_buttons:
     if button.text=='ADD TO CART':
         cart_buttons.append(button)
-
-## Case 1- Buy one object
 def buy_products(n,cart_buttons):
     purchased_items=random.sample(cart_buttons,n)
     for each in purchased_items:
