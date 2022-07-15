@@ -16,7 +16,7 @@ driver.get(url)
 driver.maximize_window()
 time.sleep(waiting_time)
 
-time.sleep(demo_time)
+# time.sleep(demo_time)
 
 ## Insert User name
 selected_user="standard_user"   
